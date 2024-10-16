@@ -1,0 +1,9 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #F5F5F5;
+    color: #F44336;
+    font-family: 'Arial', sans-serif;
+    text-transform: capitalize;
+}

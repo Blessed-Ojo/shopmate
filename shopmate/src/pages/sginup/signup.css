@@ -1,0 +1,46 @@
+.Signuppage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 120px;
+    padding-top: 30px;
+    margin: 50px;
+    border: 2px solid red;
+    border-radius: 15px;
+    gap: 10px;
+  
+}
+.signup{
+    text-align: center;
+    font-size: 30px;
+    
+}
+h3{
+    font-size: 30px;
+}
+form{
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    width: 300px;
+    height: auto;
+}
+input{
+    padding: 25px;
+    margin: 10px;
+    font-size: 20px;
+    color: black;
+}
+input:focus{
+    outline: none;
+}
+.signbtn{
+    padding: 10px;
+    background-color: #4CAF50;
+    font-size: 25px;
+    border-radius: 5px;
+}
+.signbtn:hover{
+    background-color: #8bda8d;
+}
