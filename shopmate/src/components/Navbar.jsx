@@ -17,10 +17,10 @@ const Navbar = ({ user, onLogout }) => {
           Cart
         </NavLink>
       {user ? (
-        <>
-          <span>Hello, {user.username}!</span>
+        <div className='logout'>
+          <span>Hello,{user.username}!</span>
           <button onClick={onLogout}>Logout</button>
-        </>
+        </div>
       ) : (
         <>
           <NavLink to="/login"

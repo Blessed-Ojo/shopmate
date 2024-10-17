@@ -1,18 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./loginpage.css";
 import { FaShoppingCart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-const Loginpage = () => {
-  const [formData, setFromData] = useState({
+const Loginpage = ({onLogin}) => {
+  const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
   });
   const [error, setError] = useState('');
+  const [success,setSccess] =useState('')
+
   const navigate = useNavigate();
+
+  useEffect(() =>{
+    const savedUser = JSON.parse(localStorage.getItem('savedUser'))
+    if (savedUser) {
+      setFormData(savedUser)
+    }
+  },[])
+
   const handleChanage = (e) => {
-    setFromData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,10 +34,14 @@ const Loginpage = () => {
         u.password === formData.password
     );
     if (user) {
-      onlogin(user);
-      navigate("/");
+      onLogin(user);
+      localStorage.setItem('savedUser',JSON.stringify(formData))
+      setSccess("Login successful!");
+      setError("");
+      setTimeout(()=>navigate("/"),2000)
     } else {
       setError("Invalid credentials.!");
+      setSccess("")
     }
   };
   return (
@@ -45,6 +59,7 @@ const Loginpage = () => {
           type="text"
           name="username"
           placeholder="username"
+          autoComplete="username" 
           value={formData.username}
           onChange={handleChanage}
           required
@@ -53,6 +68,7 @@ const Loginpage = () => {
           type="email"
           name="email"
           placeholder="email"
+          autoComplete="email" 
           value={formData.email}
           onChange={handleChanage}
           required
@@ -61,11 +77,13 @@ const Loginpage = () => {
           type="password"
           name="password"
           placeholder="password"
+          autoComplete="password" 
           value={formData.password}
           onChange={handleChanage}
           required
         />
         {error && <p>{error}</p>}
+        {success&& <p>{success}</p>}
         <button type="submit" className="signbtn">
           login
         </button>
